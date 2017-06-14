@@ -31,6 +31,30 @@ Commands:
     End of week.
 ```
 
+Examples
+--------
+
+Beginning of day
+
+```
+$ bin/hownow bod
+2017-06-14 00:00:00 +1000 AEST
+```
+
+Beginning of day, formatted as epoch
+
+```
+$ bin/hownow -e bod
+1497362400
+```
+
+Beginning of day, formatted as epoch and no newline (useful for scripts, % at the end us how zsh shows no new line)
+
+```
+$ bin/hownow -en bod
+1497362400%
+```
+
 Install
 -------
 
