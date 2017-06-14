@@ -16,8 +16,8 @@ var (
 
 	epoch = app.Flag("epoch", "Format as seconds since epoch.").Short('e').Bool()
 
-	bod = app.Command("bod", "Beginning of day.")
-	bow = app.Command("bow", "Beginning of week.")
+	bod = app.Command("bod", "Beginning of day.").Alias("sod")
+	bow = app.Command("bow", "Beginning of week.").Alias("sow")
 
 	eod = app.Command("eod", "End of day.")
 	eow = app.Command("eow", "End of week.")
@@ -28,55 +28,31 @@ func main() {
 	switch kingpin.MustParse(app.Parse(os.Args[1:])) {
 
 	case bod.FullCommand():
-		printIt(beginningOfDay())
+		printIt(now.BeginningOfDay())
 
 	case bow.FullCommand():
-		printIt(beginningOfWeek())
+		printIt(now.BeginningOfWeek())
 
 	case eod.FullCommand():
-		printIt(endOfDay())
+		printIt(now.EndOfDay())
 
 	case eow.FullCommand():
-		printIt(endOfWeek())
+		printIt(now.EndOfWeek())
 	}
 }
 
-func beginningOfDay() string {
+func printIt(in interface{}) {
+	var out string
+
 	if *epoch {
-		return strconv.FormatInt(now.BeginningOfDay().Unix(), 10)
+		out = strconv.FormatInt(now.BeginningOfDay().Unix(), 10)
 	} else {
-		return now.BeginningOfDay().String()
+		out = now.BeginningOfDay().String()
 	}
-}
 
-func beginningOfWeek() string {
-	if *epoch {
-		return strconv.FormatInt(now.BeginningOfWeek().Unix(), 10)
-	} else {
-		return now.BeginningOfWeek().String()
-	}
-}
-
-func endOfDay() string {
-	if *epoch {
-		return strconv.FormatInt(now.EndOfDay().Unix(), 10)
-	} else {
-		return now.EndOfDay().String()
-	}
-}
-
-func endOfWeek() string {
-	if *epoch {
-		return strconv.FormatInt(now.EndOfWeek().Unix(), 10)
-	} else {
-		return now.EndOfWeek().String()
-	}
-}
-
-func printIt(in string) {
 	if *noNewLine {
-		fmt.Print(in)
+		fmt.Print(out)
 	} else {
-		fmt.Println(in)
+		fmt.Println(out)
 	}
 }
