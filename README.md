@@ -6,7 +6,7 @@ How now should be displayed.
 ```
 usage: hownow [<flags>] <command> [<args> ...]
 
-Time tool for determing how now should be displayed
+How now should be displayed
 
 Flags:
       --help         Show context-sensitive help (also try --help-long and --help-man).
@@ -21,8 +21,14 @@ Commands:
   bod
     Beginning of day.
 
+  bow
+    Beginning of week.
+
   eod
     End of day.
+
+  eow
+    End of week.
 ```
 
 Install
