@@ -17,7 +17,10 @@ var (
 	epoch = app.Flag("epoch", "Format as seconds since epoch.").Short('e').Bool()
 
 	bod = app.Command("bod", "Beginning of day.")
+	bow = app.Command("bow", "Beginning of week.")
+
 	eod = app.Command("eod", "End of day.")
+	eow = app.Command("eow", "End of week.")
 )
 
 func main() {
@@ -27,8 +30,14 @@ func main() {
 	case bod.FullCommand():
 		printIt(beginningOfDay())
 
+	case bow.FullCommand():
+		printIt(beginningOfWeek())
+
 	case eod.FullCommand():
 		printIt(endOfDay())
+
+	case eow.FullCommand():
+		printIt(endOfWeek())
 	}
 }
 
@@ -40,11 +49,27 @@ func beginningOfDay() string {
 	}
 }
 
+func beginningOfWeek() string {
+	if *epoch {
+		return strconv.FormatInt(now.BeginningOfWeek().Unix(), 10)
+	} else {
+		return now.BeginningOfWeek().String()
+	}
+}
+
 func endOfDay() string {
 	if *epoch {
 		return strconv.FormatInt(now.EndOfDay().Unix(), 10)
 	} else {
 		return now.EndOfDay().String()
+	}
+}
+
+func endOfWeek() string {
+	if *epoch {
+		return strconv.FormatInt(now.EndOfWeek().Unix(), 10)
+	} else {
+		return now.EndOfWeek().String()
 	}
 }
 
