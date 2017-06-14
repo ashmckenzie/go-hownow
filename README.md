@@ -1,10 +1,10 @@
-nowhow
+hownow
 ======
 
-Time tool for determing how now should be displayed :)
+How now should be displayed.
 
 ```
-usage: nowhow [<flags>] <command> [<args> ...]
+usage: hownow [<flags>] <command> [<args> ...]
 
 Time tool for determing how now should be displayed
 
@@ -28,11 +28,11 @@ Commands:
 Install
 -------
 
-`go get github.com/ashmckenzie/nowhow`
+`go get github.com/ashmckenzie/go-hownow/hownow`
 
 or download a release:
 
-https://github.com/ashmckenzie/nowhow/releases
+https://github.com/ashmckenzie/go-hownow/releases
 
 License
 -------
