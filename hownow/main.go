@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	app       = kingpin.New("hownow", " Time tool for determing how now should be displayed")
+	app       = kingpin.New("hownow", " How now should be displayed")
 	noNewLine = app.Flag("no-new-line", "Don't print a newline at the end").Short('n').Bool()
 
 	epoch = app.Flag("epoch", "Format as seconds since epoch.").Short('e').Bool()
