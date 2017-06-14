@@ -14,8 +14,8 @@ import (
 var (
 	app       = kingpin.New("hownow", " How now should be displayed")
 	noNewLine = app.Flag("no-new-line", "Don't print a newline at the end").Short('n').Bool()
-
-	epoch = app.Flag("epoch", "Format as seconds since epoch.").Short('e').Bool()
+	epoch     = app.Flag("epoch", "Format as seconds since epoch.").Short('e').Bool()
+	offset    = app.Flag("offset", "Offset now").Int()
 
 	bod = app.Command("bod", "Beginning of day.").Alias("sod")
 	bow = app.Command("bow", "Beginning of week.").Alias("sow")
@@ -29,17 +29,22 @@ func main() {
 	switch kingpin.MustParse(app.Parse(os.Args[1:])) {
 
 	case bod.FullCommand():
-		printIt(now.BeginningOfDay())
+		printIt(pointInTime().BeginningOfDay())
 
 	case bow.FullCommand():
-		printIt(now.BeginningOfWeek())
+		printIt(pointInTime().BeginningOfWeek())
 
 	case eod.FullCommand():
-		printIt(now.EndOfDay())
+		printIt(pointInTime().EndOfDay())
 
 	case eow.FullCommand():
-		printIt(now.EndOfWeek())
+		printIt(pointInTime().EndOfWeek())
 	}
+}
+
+func pointInTime() *now.Now {
+	t := time.Now().AddDate(0, 0, *offset)
+	return now.New(t)
 }
 
 func printIt(in time.Time) {
