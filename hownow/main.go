@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/jinzhu/now"
 
@@ -41,13 +42,13 @@ func main() {
 	}
 }
 
-func printIt(in interface{}) {
+func printIt(in time.Time) {
 	var out string
 
 	if *epoch {
-		out = strconv.FormatInt(now.BeginningOfDay().Unix(), 10)
+		out = strconv.FormatInt(in.Unix(), 10)
 	} else {
-		out = now.BeginningOfDay().String()
+		out = in.String()
 	}
 
 	if *noNewLine {

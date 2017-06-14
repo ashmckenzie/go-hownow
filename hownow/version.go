@@ -1,4 +1,4 @@
 package main
 
 //go:generate bash ../scripts/get_version.sh
-var version = "v0.2.0"
+var version = "v0.2.1"
