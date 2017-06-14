@@ -1,7 +1,7 @@
 hownow
 ======
 
-How now should be displayed.
+How now should be displayed.  Uses the very awesome https://github.com/jinzhu/now library.
 
 ```
 usage: hownow [<flags>] <command> [<args> ...]
