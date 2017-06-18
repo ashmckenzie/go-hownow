@@ -25,9 +25,9 @@ func TestParseEOW(t *testing.T) {
 }
 
 func TestFormatNoNewLine(t *testing.T) {
-	assert.Equal(t, format("test", false), "test", "format")
+	assert.Equal(t, "test", format("test", false), "format")
 }
 
 func TestFormatNewLine(t *testing.T) {
-	assert.Equal(t, format("test", true), "test\n", "format + new line")
+	assert.Equal(t, "test\n", format("test", true), "format + new line")
 }
