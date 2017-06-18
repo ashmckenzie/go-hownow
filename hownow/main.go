@@ -45,7 +45,7 @@ func parse(args []string) string {
 		theTime = hownow.Process("eow", *epoch)
 	}
 
-	return format(theTime, *noNewLine)
+	return format(theTime, !*noNewLine)
 }
 
 func format(in string, newLine bool) string {
