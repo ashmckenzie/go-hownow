@@ -11,14 +11,14 @@ import (
 var (
 	app       = kingpin.New("hownow", " How now should be displayed")
 	noNewLine = app.Flag("no-new-line", "Don't print a newline at the end").Short('n').Bool()
-	epoch     = app.Flag("epoch", "Format as seconds since epoch.").Short('e').Bool()
+	epoch     = app.Flag("epoch", "Format as seconds since epoch").Short('e').Bool()
 	offset    = app.Flag("offset", "Offset now").Int()
 
-	bod = app.Command("bod", "Beginning of day.").Alias("sod")
-	bow = app.Command("bow", "Beginning of week.").Alias("sow")
+	bod = app.Command("bod", "Beginning of day").Alias("sod")
+	bow = app.Command("bow", "Beginning of week").Alias("sow")
 
-	eod = app.Command("eod", "End of day.")
-	eow = app.Command("eow", "End of week.")
+	eod = app.Command("eod", "End of day")
+	eow = app.Command("eow", "End of week")
 )
 
 func main() {
