@@ -14,6 +14,7 @@ type PointInTime struct {
 
 func New(t time.Time, offset int) *PointInTime {
 	n := t.AddDate(0, 0, offset)
+	now.FirstDayMonday = true
 	return &PointInTime{Offset: offset, Now: now.New(n)}
 }
 
