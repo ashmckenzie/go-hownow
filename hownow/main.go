@@ -19,6 +19,9 @@ var (
 
 	bow = app.Command("bow", "Beginning of week").Alias("sow")
 	eow = app.Command("eow", "End of week")
+
+	bom = app.Command("bom", "Beginning of month").Alias("som")
+	eom = app.Command("eom", "End of month")
 )
 
 func main() {
@@ -40,6 +43,10 @@ func parse(args []string) string {
 		theTime = hownow.Process("bow", *epoch)
 	case eow.FullCommand():
 		theTime = hownow.Process("eow", *epoch)
+	case bom.FullCommand():
+		theTime = hownow.Process("bom", *epoch)
+	case eom.FullCommand():
+		theTime = hownow.Process("eom", *epoch)
 	}
 
 	return format(theTime, !*noNewLine)

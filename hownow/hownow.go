@@ -30,6 +30,11 @@ func (self *PointInTime) Process(command string, epoch bool) string {
 		theTime = self.Now.BeginningOfWeek()
 	case "eow":
 		theTime = self.Now.EndOfWeek()
+	case "bom":
+		theTime = self.Now.BeginningOfMonth()
+	case "eom":
+		theTime = self.Now.EndOfMonth()
+
 	}
 
 	return toString(theTime, epoch)

@@ -30,3 +30,13 @@ func TestProcessEOW(t *testing.T) {
 	assert.Equal(t, "2017-06-18 23:59:59.999999999 +0000 UTC", pointInTime.Process("eow", false), "eow")
 	assert.Equal(t, "1497830399", pointInTime.Process("eow", true), "eow epoch")
 }
+
+func TestProcessBOM(t *testing.T) {
+	assert.Equal(t, "2017-06-01 00:00:00 +0000 UTC", pointInTime.Process("bom", false), "bom")
+	assert.Equal(t, "1496275200", pointInTime.Process("bom", true), "bom epoch")
+}
+
+func TestProcessEOM(t *testing.T) {
+	assert.Equal(t, "2017-06-30 23:59:59.999999999 +0000 UTC", pointInTime.Process("eom", false), "eom")
+	assert.Equal(t, "1498867199", pointInTime.Process("eom", true), "eom epoch")
+}

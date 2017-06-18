@@ -30,3 +30,13 @@ func TestProcessPastOffsetEOW(t *testing.T) {
 	assert.Equal(t, "2017-06-18 23:59:59.999999999 +0000 UTC", pointInTimeInPast.Process("eow", false), "eow")
 	assert.Equal(t, "1497830399", pointInTimeInPast.Process("eow", true), "eow epoch")
 }
+
+func TestProcessPastOffsetBOM(t *testing.T) {
+	assert.Equal(t, "2017-06-01 00:00:00 +0000 UTC", pointInTimeInPast.Process("bom", false), "bom")
+	assert.Equal(t, "1496275200", pointInTimeInPast.Process("bom", true), "bom epoch")
+}
+
+func TestProcessPastOffsetEOM(t *testing.T) {
+	assert.Equal(t, "2017-06-30 23:59:59.999999999 +0000 UTC", pointInTimeInPast.Process("eom", false), "eom")
+	assert.Equal(t, "1498867199", pointInTimeInPast.Process("eom", true), "eom epoch")
+}
