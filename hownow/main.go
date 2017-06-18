@@ -3,10 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-	"strconv"
 	"time"
-
-	"github.com/jinzhu/now"
 
 	"gopkg.in/alecthomas/kingpin.v2"
 )
@@ -25,40 +22,36 @@ var (
 )
 
 func main() {
-	app.Version(version)
-	switch kingpin.MustParse(app.Parse(os.Args[1:])) {
+	fmt.Printf(parse(os.Args[1:]))
+}
 
+func parse(args []string) string {
+	var theTime string
+	app.Version(version)
+
+	hownow := New(time.Now(), *offset)
+
+	switch kingpin.MustParse(app.Parse(args)) {
 	case bod.FullCommand():
-		printIt(pointInTime().BeginningOfDay())
+		theTime = hownow.Process("bod", *epoch)
 
 	case bow.FullCommand():
-		printIt(pointInTime().BeginningOfWeek())
+		theTime = hownow.Process("bow", *epoch)
 
 	case eod.FullCommand():
-		printIt(pointInTime().EndOfDay())
+		theTime = hownow.Process("eod", *epoch)
 
 	case eow.FullCommand():
-		printIt(pointInTime().EndOfWeek())
-	}
-}
-
-func pointInTime() *now.Now {
-	t := time.Now().AddDate(0, 0, *offset)
-	return now.New(t)
-}
-
-func printIt(in time.Time) {
-	var out string
-
-	if *epoch {
-		out = strconv.FormatInt(in.Unix(), 10)
-	} else {
-		out = in.String()
+		theTime = hownow.Process("eow", *epoch)
 	}
 
-	if *noNewLine {
-		fmt.Print(out)
+	return format(theTime, *noNewLine)
+}
+
+func format(in string, newLine bool) string {
+	if newLine {
+		return fmt.Sprintf("%s\n", in)
 	} else {
-		fmt.Println(out)
+		return in
 	}
 }
