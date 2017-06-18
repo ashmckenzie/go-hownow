@@ -29,6 +29,7 @@ release: make_dirs test
 
 release_upload: release
 	git tag $(VERSION)
+	git push
 	git push --tags
 
 	github-release release ${GITHUB_RELEASE_ARGS}
