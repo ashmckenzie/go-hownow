@@ -11,26 +11,33 @@ usage: hownow [<flags>] <command> [<args> ...]
 How now should be displayed
 
 Flags:
-      --help         Show context-sensitive help (also try --help-long and --help-man).
-  -n, --no-new-line  Don't print a newline at the end
-  -e, --epoch        Format as seconds since epoch.
-      --version      Show application version.
+      --help           Show context-sensitive help (also try --help-long and --help-man).
+  -n, --no-new-line    Don't print a newline at the end
+  -e, --epoch          Format as seconds since epoch
+      --offset=OFFSET  Offset now
+      --version        Show application version.
 
 Commands:
   help [<command>...]
     Show help.
 
   bod
-    Beginning of day.
-
-  bow
-    Beginning of week.
+    Beginning of day
 
   eod
-    End of day.
+    End of day
+
+  bow
+    Beginning of week
 
   eow
-    End of week.
+    End of week
+
+  bom
+    Beginning of month
+
+  eom
+    End of month
 ```
 
 Examples
