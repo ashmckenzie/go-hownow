@@ -24,13 +24,10 @@ func (self *PointInTime) Process(command string, epoch bool) string {
 	switch command {
 	case "bod":
 		theTime = self.Now.BeginningOfDay()
-
-	case "bow":
-		theTime = self.Now.BeginningOfWeek()
-
 	case "eod":
 		theTime = self.Now.EndOfDay()
-
+	case "bow":
+		theTime = self.Now.BeginningOfWeek()
 	case "eow":
 		theTime = self.Now.EndOfWeek()
 	}

@@ -15,9 +15,9 @@ var (
 	offset    = app.Flag("offset", "Offset now").Int()
 
 	bod = app.Command("bod", "Beginning of day").Alias("sod")
-	bow = app.Command("bow", "Beginning of week").Alias("sow")
-
 	eod = app.Command("eod", "End of day")
+
+	bow = app.Command("bow", "Beginning of week").Alias("sow")
 	eow = app.Command("eow", "End of week")
 )
 
@@ -34,13 +34,10 @@ func parse(args []string) string {
 	switch kingpin.MustParse(app.Parse(args)) {
 	case bod.FullCommand():
 		theTime = hownow.Process("bod", *epoch)
-
-	case bow.FullCommand():
-		theTime = hownow.Process("bow", *epoch)
-
 	case eod.FullCommand():
 		theTime = hownow.Process("eod", *epoch)
-
+	case bow.FullCommand():
+		theTime = hownow.Process("bow", *epoch)
 	case eow.FullCommand():
 		theTime = hownow.Process("eow", *epoch)
 	}

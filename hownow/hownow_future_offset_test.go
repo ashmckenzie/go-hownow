@@ -16,14 +16,14 @@ func TestProcessFutureOffsetBOD(t *testing.T) {
 	assert.Equal(t, "1498003200", pointInTimeInFuture.Process("bod", true), "bod epoch")
 }
 
-func TestProcessFutureOffsetBOW(t *testing.T) {
-	assert.Equal(t, "2017-06-19 00:00:00 +0000 UTC", pointInTimeInFuture.Process("bow", false), "bow")
-	assert.Equal(t, "1497830400", pointInTimeInFuture.Process("bow", true), "bow epoch")
-}
-
 func TestProcessFutureOffsetEOD(t *testing.T) {
 	assert.Equal(t, "2017-06-21 23:59:59.999999999 +0000 UTC", pointInTimeInFuture.Process("eod", false), "eod")
 	assert.Equal(t, "1498089599", pointInTimeInFuture.Process("eod", true), "eod epoch")
+}
+
+func TestProcessFutureOffsetBOW(t *testing.T) {
+	assert.Equal(t, "2017-06-19 00:00:00 +0000 UTC", pointInTimeInFuture.Process("bow", false), "bow")
+	assert.Equal(t, "1497830400", pointInTimeInFuture.Process("bow", true), "bow epoch")
 }
 
 func TestProcessFutureOffsetEOW(t *testing.T) {
