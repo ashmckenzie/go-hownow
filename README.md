@@ -1,6 +1,8 @@
 hownow
 ======
 
+[![Build Status](https://travis-ci.org/ashmckenzie/go-hownow.svg?branch=master)](https://travis-ci.org/ashmckenzie/go-hownow)
+
 How now should be displayed.  Uses the very awesome https://github.com/jinzhu/now library.
 
 ```
