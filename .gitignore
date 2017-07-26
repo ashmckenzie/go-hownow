@@ -16,4 +16,5 @@
 .envrc
 *.swp
 hownow/bin/
+hownow/vendor/*
 hownow/release/
