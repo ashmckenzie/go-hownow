@@ -21,7 +21,7 @@ default: make_dirs test
 	go build ${BUILD_ARGS} -o $(BIN_DIR)/${PROJECT_NAME}
 
 run: test
-	go run main.go version.go $(filter-out $@, $(MAKECMDGOALS))
+	go run main.go version.go hownow.go $(filter-out $@, $(MAKECMDGOALS))
 
 release: make_dirs test
 	CGO_ENABLED=0 GOOS=darwin go build -a -installsuffix cgo ${BUILD_ARGS} -o ${RELEASE_DIR}/${DARWIN_RELEASE}
