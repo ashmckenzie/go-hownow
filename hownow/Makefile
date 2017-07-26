@@ -37,7 +37,7 @@ release_upload: release
 	github-release upload ${GITHUB_RELEASE_ARGS} --name ${LINUX_RELEASE} --file ${RELEASE_DIR}/${LINUX_RELEASE}
 
 test: deps
-	go test -cover -v -tags=safe
+	go test -cover
 
 deps: make_dirs
 	go get github.com/kardianos/govendor
