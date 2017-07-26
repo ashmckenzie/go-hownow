@@ -7,6 +7,7 @@ APP_DIR ?= $(PWD)
 BIN_DIR=$(APP_DIR)/bin
 RELEASE_DIR=$(APP_DIR)/release
 VENDOR_DIR=$(APP_DIR)/vendor
+TMP_DIR=$(APP_DIR)/tmp
 
 BUILD_ARGS=-i -ldflags=""
 
@@ -26,6 +27,8 @@ run: test
 release: make_dirs test
 	CGO_ENABLED=0 GOOS=darwin go build -a -installsuffix cgo ${BUILD_ARGS} -o ${RELEASE_DIR}/${DARWIN_RELEASE}
 	CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo ${BUILD_ARGS} -o ${RELEASE_DIR}/${LINUX_RELEASE}
+	upx ${RELEASE_DIR}/${DARWIN_RELEASE}
+	upx ${RELEASE_DIR}/${LINUX_RELEASE}
 
 release_upload: release
 	git tag $(VERSION)
@@ -36,22 +39,41 @@ release_upload: release
 	github-release upload ${GITHUB_RELEASE_ARGS} --name ${DARWIN_RELEASE} --file ${RELEASE_DIR}/${DARWIN_RELEASE}
 	github-release upload ${GITHUB_RELEASE_ARGS} --name ${LINUX_RELEASE} --file ${RELEASE_DIR}/${LINUX_RELEASE}
 
+travis_test:
+	go test -race -coverprofile=coverage.txt -covermode=atomic
+
 test: deps
-	go test -cover -v -tags=safe
+	go tool vet -tests *.go
+	errcheck -ignoretests
+	go test -coverprofile ./tmp/coverage.out
+
+quick_test:
+	go test -coverprofile ./tmp/coverage.out
+	go tool cover -html ./tmp/coverage.out
+
+report: test
+	mkdir -p reports
+	go get -u github.com/robotvert/goreportcard
+	goreporter -p ../ofr -r ../ofr/reports/ -e vendor
+	go tool cover -html ./tmp/coverage.out
 
 deps: make_dirs
 	go get github.com/kardianos/govendor
+	go get github.com/kisielk/errcheck
 	go get github.com/aktau/github-release
+	go get honnef.co/go/tools/cmd/megacheck
 	govendor fetch +missing
-	go generate
+	go generate -v -x ./
 
 update_deps:
 	go get -u github.com/kardianos/govendor
+	go get -u github.com/kisielk/errcheck
 	go get -u github.com/aktau/github-release
+	go get -u honnef.co/go/tools/cmd/megacheck
 	govendor update +e
 
 make_dirs:
-	@mkdir -p ${BIN_DIR} ${RELEASE_DIR} ${VENDOR_DIR}
+	@mkdir -p ${BIN_DIR} ${RELEASE_DIR} ${VENDOR_DIR} ${TMP_DIR}
 
 clean:
 	rm -rf $(BIN_DIR) $(RELEASE_DIR)
