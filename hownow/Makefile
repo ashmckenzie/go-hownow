@@ -26,6 +26,8 @@ run: test
 release: make_dirs test
 	CGO_ENABLED=0 GOOS=darwin go build -a -installsuffix cgo ${BUILD_ARGS} -o ${RELEASE_DIR}/${DARWIN_RELEASE}
 	CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo ${BUILD_ARGS} -o ${RELEASE_DIR}/${LINUX_RELEASE}
+	upx ${RELEASE_DIR}/${DARWIN_RELEASE}
+	upx ${RELEASE_DIR}/${LINUX_RELEASE}
 
 release_upload: release
 	git tag $(VERSION)
