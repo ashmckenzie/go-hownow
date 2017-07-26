@@ -1,4 +1,4 @@
-package main
+package hownow
 
 import (
 	"strconv"
@@ -7,34 +7,36 @@ import (
 	"github.com/jinzhu/now"
 )
 
+// PointInTime ...
 type PointInTime struct {
 	Offset int
 	Now    *now.Now
 }
 
-func New(t time.Time, offset int) *PointInTime {
+// New ...
+func New(t time.Time, offset int) PointInTime {
 	n := t.AddDate(0, 0, offset)
 	now.FirstDayMonday = true
-	return &PointInTime{Offset: offset, Now: now.New(n)}
+	return PointInTime{Offset: offset, Now: now.New(n)}
 }
 
-func (self *PointInTime) Process(command string, epoch bool) string {
+// Process ...
+func (p PointInTime) Process(command string, epoch bool) string {
 	var theTime time.Time
 
 	switch command {
 	case "bod":
-		theTime = self.Now.BeginningOfDay()
+		theTime = p.Now.BeginningOfDay()
 	case "eod":
-		theTime = self.Now.EndOfDay()
+		theTime = p.Now.EndOfDay()
 	case "bow":
-		theTime = self.Now.BeginningOfWeek()
+		theTime = p.Now.BeginningOfWeek()
 	case "eow":
-		theTime = self.Now.EndOfWeek()
+		theTime = p.Now.EndOfWeek()
 	case "bom":
-		theTime = self.Now.BeginningOfMonth()
+		theTime = p.Now.BeginningOfMonth()
 	case "eom":
-		theTime = self.Now.EndOfMonth()
-
+		theTime = p.Now.EndOfMonth()
 	}
 
 	return toString(theTime, epoch)

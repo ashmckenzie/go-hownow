@@ -2,6 +2,8 @@ hownow
 ======
 
 [![Build Status](https://travis-ci.org/ashmckenzie/go-hownow.svg?branch=master)](https://travis-ci.org/ashmckenzie/go-hownow)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ashmckenzie/go-hownow)](https://goreportcard.com/report/github.com/ashmckenzie/go-hownow)
+[![Codecov](https://img.shields.io/codecov/c/github/ashmckenzie/go-hownow.svg)](https://codecov.io/gh/ashmckenzie/go-hownow)
 
 How now should be displayed.  Uses the very awesome https://github.com/jinzhu/now library.
 

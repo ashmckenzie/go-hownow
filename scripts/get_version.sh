@@ -2,8 +2,10 @@
 version=`cat VERSION`
 # Write out the package.
 cat << EOF > version.go
-package main
+package hownow
 
 //go:generate bash ../scripts/get_version.sh
-var version = "$version"
+
+// Version ...
+var Version = "$version"
 EOF

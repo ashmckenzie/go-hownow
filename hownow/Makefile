@@ -54,7 +54,7 @@ quick_test:
 report: test
 	mkdir -p reports
 	go get -u github.com/robotvert/goreportcard
-	goreporter -p ../ofr -r ../ofr/reports/ -e vendor
+	goreporter -p ../hownow -r ../hownow/reports/ -e vendor
 	go tool cover -html ./tmp/coverage.out
 
 deps: make_dirs
