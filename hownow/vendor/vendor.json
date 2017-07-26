@@ -89,6 +89,12 @@
 			"revisionTime": "2017-07-11T18:34:51Z"
 		},
 		{
+			"checksumSHA1": "40vJyUB4ezQSn/NSadsKEOrudMc=",
+			"path": "github.com/inconshreveable/mousetrap",
+			"revision": "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75",
+			"revisionTime": "2014-10-17T20:07:13Z"
+		},
+		{
 			"checksumSHA1": "YCCgRPYgjw5w9PKdkFhpNiPsLao=",
 			"path": "github.com/jinzhu/now",
 			"revision": "d939ba741945c047cac69c329c5fb0d6b4a06520",
