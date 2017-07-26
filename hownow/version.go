@@ -1,4 +1,6 @@
-package main
+package hownow
 
 //go:generate bash ../scripts/get_version.sh
-var version = "v0.7.0"
+
+// Version ...
+var Version = "v0.6.0"
