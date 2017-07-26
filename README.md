@@ -75,6 +75,15 @@ or download a release:
 
 https://github.com/ashmckenzie/go-hownow/releases
 
+## Building
+
+1. `make`
+
+## Thanks
+
+* [github.com/spf13/cobra](https://github.com/spf13/cobra)
+* [github.com/jinzhu/now](https://github.com/jinzhu/now)
+
 License
 -------
 
