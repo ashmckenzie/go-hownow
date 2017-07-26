@@ -19,14 +19,14 @@ GITHUB_RELEASE_ARGS=--user ${GITHUB_USERNAME} --repo ${GITHUB_REPO} --tag ${VERS
 .PHONY: create_build_image deps update_deps make_dirs test run clean
 
 default: make_dirs test
-	go build ${BUILD_ARGS} -o $(BIN_DIR)/${PROJECT_NAME}
+	go build ${BUILD_ARGS} -o $(BIN_DIR)/$(PROJECT_NAME) ./cmd
 
 run: test
 	go run main.go version.go $(filter-out $@, $(MAKECMDGOALS))
 
 release: make_dirs test
-	CGO_ENABLED=0 GOOS=darwin go build -a -installsuffix cgo ${BUILD_ARGS} -o ${RELEASE_DIR}/${DARWIN_RELEASE}
-	CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo ${BUILD_ARGS} -o ${RELEASE_DIR}/${LINUX_RELEASE}
+	CGO_ENABLED=0 GOOS=darwin go build -a -installsuffix cgo ${BUILD_ARGS} -o ${RELEASE_DIR}/${DARWIN_RELEASE} ./cmd
+	CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo ${BUILD_ARGS} -o ${RELEASE_DIR}/${LINUX_RELEASE} ./cmd
 	upx ${RELEASE_DIR}/${DARWIN_RELEASE}
 	upx ${RELEASE_DIR}/${LINUX_RELEASE}
 
@@ -63,7 +63,7 @@ deps: make_dirs
 	go get github.com/aktau/github-release
 	go get honnef.co/go/tools/cmd/megacheck
 	govendor fetch +missing
-	go generate -v -x ./
+	go generate -v -x ./ ./cmd ./commands
 
 update_deps:
 	go get -u github.com/kardianos/govendor
