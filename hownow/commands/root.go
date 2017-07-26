@@ -22,9 +22,10 @@ var RootCmd = &cobra.Command{
 	},
 	Run: func(cmd *cobra.Command, args []string) {
 		if showVersion {
-			fmt.Println(hownow.Version)
+			fmt.Printf("%s %s\n", cmd.Use, hownow.Version)
+		} else {
+			cmd.Help()
 		}
-		cmd.Help()
 	},
 }
 
