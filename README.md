@@ -8,38 +8,28 @@ hownow
 How now should be displayed.  Uses the very awesome https://github.com/jinzhu/now library.
 
 ```
-usage: hownow [<flags>] <command> [<args> ...]
-
 How now should be displayed
 
+Usage:
+  hownow [flags]
+  hownow [command]
+
+Available Commands:
+  bod         Beginning of day
+  bom         Beginning of month
+  bow         Beginning of week
+  eod         End of day
+  eom         End of month
+  eow         End of week
+  help        Help about any command
+
 Flags:
-      --help           Show context-sensitive help (also try --help-long and --help-man).
-  -n, --no-new-line    Don't print a newline at the end
-  -e, --epoch          Format as seconds since epoch
-      --offset=OFFSET  Offset now
-      --version        Show application version.
-
-Commands:
-  help [<command>...]
-    Show help.
-
-  bod
-    Beginning of day
-
-  eod
-    End of day
-
-  bow
-    Beginning of week
-
-  eow
-    End of week
-
-  bom
-    Beginning of month
-
-  eom
-    End of month
+      --debug         enable debugging
+  -e, --epoch         format as seconds since epoch
+  -h, --help          help for hownow
+  -n, --no-new-line   don't print a newline at the end
+      --offset int    offset now
+  -v, --version       show version
 ```
 
 Examples
