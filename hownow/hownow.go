@@ -7,6 +7,9 @@ import (
 	"github.com/jinzhu/now"
 )
 
+// DefaultTimeFormat ...
+const DefaultTimeFormat = "2006-01-02 15:04:05.999999999 -0700 MST"
+
 // PointInTime ...
 type PointInTime struct {
 	Offset int
@@ -21,34 +24,35 @@ func New(t time.Time, offset int) PointInTime {
 }
 
 // Process ...
-func (p PointInTime) Process(command string, epoch bool) string {
-	var theTime time.Time
+func (p PointInTime) Process(command string) time.Time {
+	var t time.Time
 
 	switch command {
 	case "bod":
-		theTime = p.Now.BeginningOfDay()
+		t = p.Now.BeginningOfDay()
 	case "eod":
-		theTime = p.Now.EndOfDay()
+		t = p.Now.EndOfDay()
 	case "bow":
-		theTime = p.Now.BeginningOfWeek()
+		t = p.Now.BeginningOfWeek()
 	case "eow":
-		theTime = p.Now.EndOfWeek()
+		t = p.Now.EndOfWeek()
 	case "bom":
-		theTime = p.Now.BeginningOfMonth()
+		t = p.Now.BeginningOfMonth()
 	case "eom":
-		theTime = p.Now.EndOfMonth()
+		t = p.Now.EndOfMonth()
 	}
 
-	return toString(theTime, epoch)
+	return t
 }
 
-func toString(in time.Time, epoch bool) string {
+// Format ...
+func (p PointInTime) Format(in time.Time, format string, epoch bool) string {
 	var out string
 
 	if epoch {
 		out = strconv.FormatInt(in.Unix(), 10)
 	} else {
-		out = in.String()
+		out = in.Format(format)
 	}
 
 	return out
